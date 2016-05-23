@@ -1,3 +1,3 @@
-# Huffman coding
+# Huffman-koodi
 
-Here lies my Java implementation of Huffman coding.
+Javalla toteutettu Huffman-pakkausalgoritmi.
