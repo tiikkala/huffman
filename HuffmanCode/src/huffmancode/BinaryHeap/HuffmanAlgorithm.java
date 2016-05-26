@@ -53,6 +53,21 @@ public class HuffmanAlgorithm {
         return (Node) heap.poll();
     }
 
+    /**
+     * Method builds the <a href="https://en.wikipedia.org/wiki/Huffman_coding">
+     * Huffman code</a> by going up the Huffman tree recursively. 
+     * Starting from root, going to the left means appending 0 to the code, 
+     * going to the right appending 1. If node is a leaf, it holds a character 
+     * and its code is the path to the leaf. The obtained code is stored to 
+     * the codeTable, with character's ASCII value as an index.
+     * 
+     * @param node Tree from which the code is obtained.
+     * 
+     * @param codeTable Table holds the Huffman codes for each character with
+     *                  characters' ASCII values as indexes.
+     * 
+     * @param code Code holds the Huffman code of the current path.
+     */
     public void buildCode(Node node, String[] codeTable, StringBuilder code) {
         if (!node.isLeaf()) {
             buildCode(node.getLeftChild(), codeTable, code.append("0"));
