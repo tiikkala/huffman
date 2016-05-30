@@ -9,7 +9,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * Test for the binary heap data structure.
+ * Tests for the binary heap data structure.
  */
 public class BinaryHeapTest {
 

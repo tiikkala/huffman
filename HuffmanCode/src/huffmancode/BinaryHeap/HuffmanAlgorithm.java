@@ -6,7 +6,7 @@ package huffmancode.BinaryHeap;
 public class HuffmanAlgorithm {
 
     /**
-     * Method creates a min heap representation of the input data.
+     * This internal method creates a min heap representation of the input data.
      *
      * @param characters Array of characters to be coded.
      * @param freq Frequencies of the characters soterd in array.
@@ -55,25 +55,27 @@ public class HuffmanAlgorithm {
 
     /**
      * Method builds the <a href="https://en.wikipedia.org/wiki/Huffman_coding">
-     * Huffman code</a> by going up the Huffman tree recursively. 
-     * Starting from root, going to the left means appending 0 to the code, 
-     * going to the right appending 1. If node is a leaf, it holds a character 
-     * and its code is the path to the leaf. The obtained code is stored to 
-     * the codeTable, with character's ASCII value as an index.
-     * 
+     * Huffman code</a> by going up the Huffman tree recursively. Starting from
+     * root, going to the left means appending 0 to the code, going to the right
+     * appending 1. If node is a leaf, it holds a character and its code is the
+     * path to the leaf. The obtained code is stored to the codeTable, with
+     * the ASCII value of the character as its index.
+     *
      * @param node Tree from which the code is obtained.
-     * 
+     *
      * @param codeTable Table holds the Huffman codes for each character with
-     *                  characters' ASCII values as indexes.
-     * 
+     * its ASCII value as index.
+     *
      * @param code Code holds the Huffman code of the current path.
      */
     public void buildCode(Node node, String[] codeTable, StringBuilder code) {
         if (!node.isLeaf()) {
             buildCode(node.getLeftChild(), codeTable, code.append("0"));
-            code.deleteCharAt(code.length()-1);
+            // remove the last character as it does not belong to the path
+            // of the current node in the recursive loop
+            code.deleteCharAt(code.length() - 1);
             buildCode(node.getRightChild(), codeTable, code.append("1"));
-            code.deleteCharAt(code.length()-1);
+            code.deleteCharAt(code.length() - 1);
         } else {
             codeTable[node.getChar()] = code.toString();
         }
