@@ -1,7 +1,8 @@
 package huffmancode.BinaryHeap;
 
 /**
- * This algorithm builds the Huffman tree from a given min heap.
+ * This algorithm builds the Huffman tree from given character and frequency tables
+ * and the size of the character set.
  */
 public class HuffmanAlgorithm {
 
