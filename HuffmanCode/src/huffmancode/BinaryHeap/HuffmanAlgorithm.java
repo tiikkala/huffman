@@ -1,23 +1,24 @@
 package huffmancode.BinaryHeap;
 
 /**
- * This algorithm builds the Huffman tree from given character and frequency tables
- * and the size of the character set.
+ * This algorithm builds the Huffman tree from given character and frequency
+ * tables and the size of the character set.
  */
 public class HuffmanAlgorithm {
 
     /**
      * This internal method creates a min heap representation of the input data.
      *
-     * @param characters Array of characters to be coded.
-     * @param freq Frequencies of the characters soterd in array.
+     * @param freq Frequency table of the ASCII characters.
      * @param size The number of different characters.
      * @return Characters stored in a min heap according to their frequency.
      */
-    private BinaryHeap createAndBuildHeap(char[] characters, int[] freq, int size) {
+    private BinaryHeap createAndBuildHeap(int[] freq, int size) {
         BinaryHeap heap = new BinaryHeap(size);
         for (int i = 0; i < size; i++) {
-            heap.insert(new Node(characters[i], freq[i]));
+            if (freq[i] != 0) {
+                heap.insert(new Node((char) i, freq[i]));
+            }
         }
         return heap;
     }
@@ -36,16 +37,16 @@ public class HuffmanAlgorithm {
      * @param size The number of different characters.
      * @return Huffman tree representing the characters.
      */
-    public Node buildHuffmanTree(char[] characters, int[] freq, int size) {
+    public Node buildHuffmanTree(int[] freq, int size) {
         Node left;
         Node right;
         Node root;
-        BinaryHeap heap = createAndBuildHeap(characters, freq, size);
+        BinaryHeap heap = createAndBuildHeap(freq, size);
         while (heap.getSize() > 1) {
             left = (Node) heap.poll();
             right = (Node) heap.poll();
-            // the ¤ character is never used, the actual characters are
-            // int the leaves
+            // the ¤ character is never used, the actual characters from the source
+            // file are in the leaf nodes
             root = new Node('¤', left.getFreq() + right.getFreq());
             root.setLeftChild(left);
             root.setRigthChild(right);
@@ -59,8 +60,8 @@ public class HuffmanAlgorithm {
      * Huffman code</a> by going up the Huffman tree recursively. Starting from
      * root, going to the left means appending 0 to the code, going to the right
      * appending 1. If node is a leaf, it holds a character and its code is the
-     * path to the leaf. The obtained code is stored to the codeTable, with
-     * the ASCII value of the character as its index.
+     * path to the leaf. The obtained code is stored to the codeTable, with the
+     * ASCII value of the character as its index.
      *
      * @param node Tree from which the code is obtained.
      *

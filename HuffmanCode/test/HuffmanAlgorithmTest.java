@@ -1,6 +1,7 @@
 
 import huffmancode.BinaryHeap.HuffmanAlgorithm;
 import huffmancode.BinaryHeap.Node;
+import huffmancode.FrequencyTable;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -13,14 +14,13 @@ import static org.junit.Assert.*;
  */
 public class HuffmanAlgorithmTest {
 
-    private char[] characters = {'a', 'b', 'c', 'd', 'e', 'f'};
-    private int freq[] = {5, 9, 12, 13, 16, 45};
-    private int size = characters.length;
+    int[] freq = new FrequencyTable().buildTable("testData/data1.txt");
+    private final int size = freq.length;
     private Node huffmanTree;
 
     @Before
     public void setUp() {
-        this.huffmanTree = new HuffmanAlgorithm().buildHuffmanTree(characters, freq, size);
+        this.huffmanTree = new HuffmanAlgorithm().buildHuffmanTree(freq, size);
     }
     
     @Test
