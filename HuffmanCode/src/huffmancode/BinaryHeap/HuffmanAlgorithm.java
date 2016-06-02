@@ -32,7 +32,6 @@ public class HuffmanAlgorithm {
      * heap. Algorithm is finished, when the heap contains only one node, that
      * is the root node of the Huffman tree.
      *
-     * @param characters Array of characters to be coded.
      * @param freq Frequencies of the characters soterd in array.
      * @param size The number of different characters.
      * @return Huffman tree representing the characters.

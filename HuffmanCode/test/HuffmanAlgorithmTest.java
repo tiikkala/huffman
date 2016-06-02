@@ -20,7 +20,7 @@ public class HuffmanAlgorithmTest {
 
     @Before
     public void setUp() {
-        this.huffmanTree = new HuffmanAlgorithm().buildHuffmanTree(freq, size);
+        this.huffmanTree = new HuffmanAlgorithm().buildHuffmanTree(this.freq, this.size);
     }
     
     @Test
