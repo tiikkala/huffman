@@ -12,7 +12,7 @@ Ohjelma saa syötteenä polun pakattavaan tai purettavaan tiedostoon. Käyttäj�
 
 ## Aika- ja tilavaativuudet
 
-Huffmanin algoritmin aikavaativuus on O(*k*log*k*), missä *k* on tiedoston eri merkkien lukumäärä (tekstitiedostoissa *k* <= 256). Pakkaamiseen ja purkamiseen kuluvaa aikaa hallitsee kuitenkin tiedoston lukeminen ja kirjoittaminen, joiden aikavaativuus on O(*n*), missä *n* on tiedoston sisältämien merkkien lukumäärä.
+Huffmanin algoritmin aikavaativuus on O(*k* log *k*), missä *k* on tiedoston eri merkkien lukumäärä (tekstitiedostoissa *k* <= 256). Pakkaamiseen ja purkamiseen kuluvaa aikaa hallitsee kuitenkin tiedoston lukeminen ja kirjoittaminen, joiden aikavaativuus on O(*n*), missä *n* on tiedoston sisältämien merkkien lukumäärä.
 
 ## Lähteet 
 

@@ -1,4 +1,4 @@
-package huffmancode.BinaryHeap;
+package huffman.datastructures;
 
 import java.util.Arrays;
 
@@ -37,23 +37,6 @@ public class BinaryHeap {
         this.size--;
         this.heapify(1); // call heapify for the new root to fix heap property
         return head;
-    }
-    
-    /**
-     * Build binary heap from a given array. The method calls heapify() for all
-     * nodes with index >= heap-size / 2.
-     * 
-     * @param data Array converted to binary heap.
-     * 
-     * @return Binary heap representing the original array.
-     */
-    public BinaryHeap buildHeap(Comparable[] data) {
-        BinaryHeap heap = new BinaryHeap(data.length);
-        heap.setNodes(data);
-        for (int i = heap.size/2; i >= 1; i--) {
-            heap.heapify(i);
-        }
-        return heap;
     }
 
     /**
@@ -119,7 +102,11 @@ public class BinaryHeap {
      * @return The table containing the heap doubled in capacity.
      */
     private void doubleTheSizeOfTheTable() {
-        this.nodes = Arrays.copyOf(this.nodes, this.nodes.length * 2);
+        Comparable[] newTable = new Comparable[this.nodes.length * 2];
+        for (int i = 0; i < this.nodes.length; i++) {
+            newTable[i] = this.nodes[i];
+        }     
+        this.nodes = newTable;
     }
 
     private int getParentIndex(int index) {

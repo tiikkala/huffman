@@ -1,4 +1,4 @@
-package huffmancode.BinaryHeap;
+package huffman.datastructures;
 
 /**
  * All characters in the source file are associated with a node
@@ -7,10 +7,10 @@ package huffmancode.BinaryHeap;
 public class Node implements Comparable {
     
     private final char character;
-    private final int freq;
+    private final long freq;
     private Node left, right;
     
-    public Node(char character, int freq) {
+    public Node(char character, long freq) {
         this.character = character;
         this.freq = freq;
         this.left = null;
@@ -18,18 +18,23 @@ public class Node implements Comparable {
     }
 
     /**
-     * Nodes are compared according to their frequency in the
-     * source file.
+     * Nodes are compared according to the frequency of the character attribute
+     * in the source file in descenging order.
      * 
-     * @param o Compared node.
+     * @param o Compared node
      * 
-     * @return 0 If freqs are equal, <0 if the parameter nodes freq is
-     * greater, >0 if the parameter nodes freq is less.
+     * @return standard compareTo
      */
     @Override
     public int compareTo(Object o) {
         Node comparedNode = (Node) o;
-        return this.freq - comparedNode.freq;
+        if (this.freq < comparedNode.getFreq()) {
+            return -1;
+        }
+        if (this.freq == comparedNode.freq) {
+            return 0;
+        }
+        return 1;
     }
     
     public Node getLeftChild() {
@@ -40,7 +45,7 @@ public class Node implements Comparable {
         return this.right;
     }
     
-    public int getFreq() {
+    public long getFreq() {
         return this.freq;
     }
     
