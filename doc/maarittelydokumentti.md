@@ -17,6 +17,5 @@ Huffmanin algoritmin aikavaativuus on O(*k*log*k*), missä *k* on tiedoston eri 
 ## Lähteet 
 
 Cormen et al. "Introduction to Algorithms"
-https://en.wikipedia.org/wiki/Huffman_coding
 
-Lähteinä olen käyttänyt Thomas H. Cormenin kirjaa “Introduction to Algorithms” sekä Wikipedian Huffman-koodista kertovaa [[http://en.wikipedia.org/wiki/Huffman_coding][sivua]].
+https://en.wikipedia.org/wiki/Huffman_coding
