@@ -13,3 +13,7 @@
 
 **30.5.**
 - 1h viikkoraportin kirjoittaminen
+
+**4.6.**
+- 4h kanonisen koodauksen tiedonhakua ja siihen tutustumista
+- 4h kanonisen koodauksen algoritmin toteuttaminen
