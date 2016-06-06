@@ -143,12 +143,12 @@ public class BinaryHeap {
                 minNodeIndex = rightIndex;
             }
             if (this.nodes[index].compareTo(this.nodes[minNodeIndex]) > 0) {
-                this.swap(index, minNodeIndex);
+                swap(index, minNodeIndex);
                 heapify(minNodeIndex);
             }
             // if only left child exists, check if it's smaller than the current node    
         } else if (leftIndex == this.getSize() && this.nodes[index].compareTo(this.nodes[leftIndex]) > 0) {
-            this.swap(index, leftIndex);
+            swap(index, leftIndex);
         }
     }
 }

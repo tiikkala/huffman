@@ -1,4 +1,4 @@
-package huffman;
+package huffman.io;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

@@ -23,7 +23,7 @@ public class Leaf extends Node {
     /**
      * The leaves are compared first according to the length of their binary codes
      * in ascending order, then according to the alphabetical order of 
-     * the characters they are representing.This allows canonizing the codes.
+     * the characters they are representing. This allows canonizing the codes.
      * 
      * @param o Compared leaf 
      * 

@@ -4,7 +4,7 @@ import huffman.datastructures.BinaryHeap;
 import huffman.datastructures.Node;
 
 /**
- * This algorithm builds the Huffman tree from given character and frequency
+ * Provides algorithm for building the Huffman tree from given character and frequency
  * tables and the size of the character set.
  */
 public class HuffmanTreeBuilder { 
@@ -29,7 +29,7 @@ public class HuffmanTreeBuilder {
     /**
      * Method builds the Huffman tree of the input data. First the algorithm
      * arranges the characters accoriding to their frequency into a min heap.
-     * Then algorithm iterate through the heap and extracts to characters with
+     * Then algorithm iterates through the heap and extracts to characters with
      * minimum frequency, creates a new node by summing their frequencies and
      * setting them as children of th new node, and adding this new node to the
      * heap. Algorithm is finished, when the heap contains only one node, that

@@ -7,7 +7,7 @@ package huffman.datastructures;
 public class Node implements Comparable {
     
     private final char character;
-    private final long freq;
+    protected final long freq;
     private Node left, right;
     
     public Node(char character, long freq) {

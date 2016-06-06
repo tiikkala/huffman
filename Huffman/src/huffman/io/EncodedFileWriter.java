@@ -1,6 +1,5 @@
 package huffman.io;
 
-import huffman.FrequencyTable;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
