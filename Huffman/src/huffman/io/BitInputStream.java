@@ -3,6 +3,7 @@ package huffman.io;
 import java.io.EOFException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.ByteBuffer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -17,6 +18,11 @@ public class BitInputStream {
     private int numBitsRemaining; // always between 0 and 7, inclusive
     private boolean isEndOfStream;
 
+    /**
+     * Creates a bit input stream based on the given byte input stream.
+     *
+     * @param in
+     */
     public BitInputStream(InputStream in) {
         if (in == null) {
             throw new NullPointerException("Argument is null");
@@ -26,13 +32,39 @@ public class BitInputStream {
         this.isEndOfStream = false;
     }
 
-    public int read() throws IOException {
+    /**
+     * Reads four bytes from the strema and converts them into an int.
+     *
+     * @return The read bytes converted to int.
+     */
+    public int readInt() {
+        try {
+            byte[] bytes = new byte[Integer.BYTES];
+            this.input.read(bytes);
+            ByteBuffer bb = ByteBuffer.wrap(bytes);
+            return bb.getInt();
+        } catch (IOException ex) {
+            Logger.getLogger(BitInputStream.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return -1;
+    }
+
+    /**
+     * Reads a bit from the stream. Returns 0 or 1 if a bit is available, or -1
+     * if the end of stream is reached. The end of stream always occurs on a
+     * byte boundary.
+     *
+     * @return 0 or 1 if a bit is available, -1 is end of stream is reached.
+     *
+     * @throws IOException
+     */
+    public int readBit() throws IOException {
         if (this.isEndOfStream) {
             return -1;
         }
         if (this.numBitsRemaining == 0) {
-            this.nextByte = input.read();
-            if (nextByte == -1) {
+            this.nextByte = this.input.read();
+            if (this.nextByte == -1) {
                 this.isEndOfStream = true;
                 return -1;
             }
@@ -43,7 +75,7 @@ public class BitInputStream {
     }
 
     public int readNoEof() throws IOException {
-        int result = this.read();
+        int result = this.readBit();
         if (result != -1) {
             return result;
         } else {

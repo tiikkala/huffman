@@ -13,14 +13,14 @@ public class HuffmanTree {
 
     private Leaf[] canonizedCodes;
     private final Node root;
-    private int maxCodeLength;
-    private final int[] codeLengths = new int[256]; // bit-lenghts of the canonical codes allows decoding of a compressed file
+    private int maxCodeLenght = 0; // maximum lenght of codes used
+    private char[] charactersOrderedByCodeLength; // characters used in source file sorted for decoding
+    private int[] canonizedCodeLengths; // bit-lenghts of the canonical codes for decoding
     private final BinaryHeap leaves = new BinaryHeap(); //  leaves are stored in minheap so that they are easy
-    //  to retrieve in the right order for canonizing
+    //  to retrieve in the right order for canonization
 
     public HuffmanTree(Node root) {
         this.root = root;
-        this.maxCodeLength = 0;
     }
 
     /**
@@ -43,6 +43,9 @@ public class HuffmanTree {
             buildCodes(node.getRightChild(), code.append("1"));
             code.deleteCharAt(code.length() - 1);
         } else {
+            if (code.length() > this.maxCodeLenght) {
+                this.maxCodeLenght = code.length();
+            }
             Leaf leaf = new Leaf(node.getChar(), node.getFreq(), code.toString());
             this.leaves.insert(leaf);
         }
@@ -55,35 +58,47 @@ public class HuffmanTree {
      * http://stackoverflow.com/questions/15081300/storing-and-reconstruction-of-huffman-tree
      */
     public void canonizeCodes() {
+        // set the capacity of the codelenght count array to maxcodelength
+        this.canonizedCodeLengths = new int[this.getMaxCodeLenght()+1];
+        char[] characters = new char[this.getLeaves().getSize()];
         Leaf[] codes = new Leaf[this.getLeaves().getSize()];
-        int k = 0;
+        int codeLengthCounter = 1;
         int code = 0;
+        int k = 0;
         while (!this.getLeaves().isEmpty()) {
             Leaf currentLeaf = (Leaf) this.getLeaves().poll();
             // if the current code is shorter than the original Huffman code, add zeros to 
             // the right end
             while (Integer.toBinaryString(code).length() < currentLeaf.getRepresentation().length()) {
                 code = code << 1;
+                codeLengthCounter++;
             }
             // replace the original code with canonized code
             currentLeaf.setRepresentation(Integer.toBinaryString(code));
-            // store the length of the code into an array
-            this.codeLengths[currentLeaf.getChar()] = currentLeaf.getRepresentation().length();
-            this.maxCodeLength = currentLeaf.getRepresentation().length();
+            // store the lengths of the code into an array
+            this.canonizedCodeLengths[codeLengthCounter]++;
+            // store the character
+            characters[k] = currentLeaf.getChar();
+            // store the canonized code
             codes[k] = currentLeaf;
             k++;
             // increment the code with 1
             code++;
         }
         this.canonizedCodes = codes;
+        this.charactersOrderedByCodeLength = characters;
     }
 
     public Leaf[] getCanonizedCodes() {
         return this.canonizedCodes;
     }
 
-    public int[] getCodeLengths() {
-        return this.codeLengths;
+    public int[] getCanonizedCodeLenghts() {
+        return this.canonizedCodeLengths;
+    }
+
+    public char[] getCharactersOrderedByCodeLenghts() {
+        return this.charactersOrderedByCodeLength;
     }
 
     public Node getRoot() {
@@ -93,17 +108,10 @@ public class HuffmanTree {
     public BinaryHeap getLeaves() {
         return this.leaves;
     }
-
-//    public Leaf[] rebuildCanonizedCodeFromCodeLengths() {
-//        // 
-//        char[] characters = new char[256];
-//        for (int i = 0; i < 256; i++) {
-//            if (this.codeLengths[i] != 0) {
-//                characters[i] = (char) i;
-//            }
-//        }
-//        
-//    }
+    
+    public int getMaxCodeLenght() {
+        return this.maxCodeLenght;
+    }
 
     public String canonizedCodesToString() {
         StringBuilder print = new StringBuilder();

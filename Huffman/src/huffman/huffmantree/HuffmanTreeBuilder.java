@@ -31,12 +31,13 @@ public class HuffmanTreeBuilder {
      * arranges the characters accoriding to their frequency into a min heap.
      * Then algorithm iterates through the heap and extracts to characters with
      * minimum frequency, creates a new node by summing their frequencies and
-     * setting them as children of th new node, and adding this new node to the
+     * setting them as children of the new node, and adding this new node to the
      * heap. Algorithm is finished, when the heap contains only one node, that
      * is the root node of the Huffman tree.
      *
      * @param freq Frequencies of the characters soterd in array.
-     * @return Huffman tree representing the characters.
+     * 
+     * @return Huffman tree representing the frequencies of the characters
      */
     public HuffmanTree buildTree(int[] freq) {
         Node left;

@@ -1,42 +1,69 @@
 package huffman.io;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Class for constructing frequency table from given text file.
+ * Class for constructing frequency table from the given file.
  */
-public class FrequencyTable {
+public final class FrequencyTable {
 
-    int[] freq;
+    private int[] freq;
 
-    public FrequencyTable() {
+    public FrequencyTable(File file) {
         this.freq = new int[256];
-    }
-
-    public int[] buildTable(String file) {
-        BufferedReader br = null;
         try {
-            br = new BufferedReader(new FileReader(file));
+            this.buildTable(file);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(FrequencyTable.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    /**
+     * Method reads the file byte by byte and updates the frequency table on the
+     * go.
+     *
+     * @param file
+     * @throws FileNotFoundException
+     */
+    private void buildTable(File file) throws FileNotFoundException {
+        InputStream input = new BufferedInputStream(new FileInputStream(file));
         try {
-            if (br != null) {
-                String line;
-                while ((line = br.readLine()) != null) {
-                    for (int i = 0; i < line.length(); i++) {
-                        this.freq[line.charAt(i)]++;
-                    }
+            while (true) {
+                int b = input.read();
+                if (b == -1) {
+                    break;
                 }
+                this.increment(b);
             }
         } catch (IOException ex) {
             Logger.getLogger(FrequencyTable.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                input.close();
+            } catch (IOException ex) {
+                Logger.getLogger(FrequencyTable.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
+    }
+
+    private void increment(int symbol) {
+        if (freq[symbol] == Integer.MAX_VALUE) {
+            throw new RuntimeException("Arithmetic overflow");
+        }
+        this.freq[symbol]++;
+    }
+
+    public int[] getFrequencies() {
         return this.freq;
     }
+
 }
