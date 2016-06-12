@@ -17,3 +17,8 @@
 **4.6.**
 - 4h kanonisen koodauksen tiedonhakua ja siihen tutustumista
 - 4h kanonisen koodauksen algoritmin toteuttaminen
+
+**12.6.**
+- 4h kanonisen koodauksen purku
+- 4h koodauksen tallentamiseen tutustuminen ja strategian miettiminen
+- 4h tiedostojen kirjoittamisen/luvun toteuttaminen
