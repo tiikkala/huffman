@@ -54,7 +54,7 @@ public class Compress {
 
     static void writeCode(BitOutputStream out, HuffmanTree hTree) throws IOException {
         int[] codeLenghts = hTree.getCanonizedCodeLenghts();
-        char[] characters = hTree.getCharactersOrderedByCodeLenghts();
+        int[] symbols = hTree.getSymbolsOrderedByCodeLenghts();
         // write lenght of codelenght table as the first four bytes
         out.writeIntegerAsByteArray(codeLenghts.length-1 * Integer.BYTES);
         // write lenght of the cahracter table as the next four bytes
@@ -64,8 +64,8 @@ public class Compress {
             out.writeIntegerAsByteArray(codeLenghts[i]);
         }
         // write character table
-        for (int j = 0; j < characters.length; j++) {
-            out.writeIntegerAsByteArray(characters[j]);
+        for (int j = 0; j < symbols.length; j++) {
+            out.writeIntegerAsByteArray(symbols[j]);
         }
     }
 

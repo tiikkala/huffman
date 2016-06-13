@@ -6,12 +6,12 @@ package huffman.datastructures;
  */
 public class Node implements Comparable {
     
-    private final char character;
+    private final int symbol;
     protected final long freq;
     private Node left, right;
     
-    public Node(char character, long freq) {
-        this.character = character;
+    public Node(int symbol, long freq) {
+        this.symbol = symbol;
         this.freq = freq;
         this.left = null;
         this.right = null;
@@ -49,8 +49,8 @@ public class Node implements Comparable {
         return this.freq;
     }
     
-    public char getChar() {
-        return this.character;
+    public int getSymbol() {
+        return this.symbol;
     }
     
     public void setLeftChild(Node node) {

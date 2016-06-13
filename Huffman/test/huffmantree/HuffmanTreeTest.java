@@ -25,10 +25,9 @@ public class HuffmanTreeTest {
 
     @Test
     public void huffmanAlgorithmBuildsCorrectCodes() {
-        String[] actualCodes = {"0", "100", "101", "111", "1100", "1101"};
-        String[] obtainedCode = new String[6];
+        String[] actualCodes = {"0", "100", "101", "111", "1101", "11000", "11001"};
+        String[] obtainedCode = new String[7];
         this.huffmanTree.buildCodes(this.huffmanTree.getRoot(), new StringBuilder());
-        this.huffmanTree.canonizeCodes();
         int i = 0;
         while (!this.huffmanTree.getLeaves().isEmpty()) {
             Leaf leaf = (Leaf) this.huffmanTree.getLeaves().poll();
@@ -40,7 +39,7 @@ public class HuffmanTreeTest {
 
     @Test
     public void codesAreCanonizedCorrectly() {
-        String[] correctlyCanonizedCodes = {"0", "100", "101", "110", "1110", "1111", "111110"};
+        String[] correctlyCanonizedCodes = {"0", "100", "101", "110", "1110", "11110", "11111"};
         String[] obtaindeCodes = new String[7];
         this.huffmanTree.buildCodes(this.huffmanTree.getRoot(), new StringBuilder());
         this.huffmanTree.canonizeCodes();

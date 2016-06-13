@@ -32,7 +32,7 @@ public final class Encoder {
             throw new NullPointerException("Code book is null");
         }
         for (Leaf l : this.codeBook) {
-            if (symbol == l.getChar()) {
+            if (symbol == l.getSymbol()) {
                 for (int i = 0; i < l.getRepresentation().length(); i++) {
                     this.output.writeBit(Character.getNumericValue(l.getRepresentation().charAt(i)));
                 }            

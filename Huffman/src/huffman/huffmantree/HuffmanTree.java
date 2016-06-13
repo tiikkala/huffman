@@ -14,7 +14,7 @@ public class HuffmanTree {
     private Leaf[] canonizedCodes;
     private final Node root;
     private int maxCodeLenght = 0; // maximum lenght of codes used
-    private char[] charactersOrderedByCodeLength; // characters used in source file sorted for decoding
+    private int[] symbolsOrderedByCodeLength; // characters used in source file sorted for decoding
     private int[] canonizedCodeLengths; // bit-lenghts of the canonical codes for decoding
     private final BinaryHeap leaves = new BinaryHeap(); //  leaves are stored in minheap so that they are easy
     //  to retrieve in the right order for canonization
@@ -46,7 +46,7 @@ public class HuffmanTree {
             if (code.length() > this.maxCodeLenght) {
                 this.maxCodeLenght = code.length();
             }
-            Leaf leaf = new Leaf(node.getChar(), node.getFreq(), code.toString());
+            Leaf leaf = new Leaf(node.getSymbol(), node.getFreq(), code.toString());
             this.leaves.insert(leaf);
         }
     }
@@ -60,7 +60,7 @@ public class HuffmanTree {
     public void canonizeCodes() {
         // set the capacity of the codelenght count array to maxcodelength
         this.canonizedCodeLengths = new int[this.getMaxCodeLenght()+1];
-        char[] characters = new char[this.getLeaves().getSize()];
+        int[] symbols = new int[this.getLeaves().getSize()];
         Leaf[] codes = new Leaf[this.getLeaves().getSize()];
         int codeLengthCounter = 1;
         int code = 0;
@@ -78,7 +78,7 @@ public class HuffmanTree {
             // store the lengths of the code into an array
             this.canonizedCodeLengths[codeLengthCounter]++;
             // store the character
-            characters[k] = currentLeaf.getChar();
+            symbols[k] = currentLeaf.getSymbol();
             // store the canonized code
             codes[k] = currentLeaf;
             k++;
@@ -86,7 +86,7 @@ public class HuffmanTree {
             code++;
         }
         this.canonizedCodes = codes;
-        this.charactersOrderedByCodeLength = characters;
+        this.symbolsOrderedByCodeLength = symbols;
     }
 
     public Leaf[] getCanonizedCodes() {
@@ -97,8 +97,8 @@ public class HuffmanTree {
         return this.canonizedCodeLengths;
     }
 
-    public char[] getCharactersOrderedByCodeLenghts() {
-        return this.charactersOrderedByCodeLength;
+    public int[] getSymbolsOrderedByCodeLenghts() {
+        return this.symbolsOrderedByCodeLength;
     }
 
     public Node getRoot() {
@@ -117,7 +117,7 @@ public class HuffmanTree {
         StringBuilder print = new StringBuilder();
         for (Leaf leaf : this.canonizedCodes) {
             if (leaf != null) {
-                print.append(leaf.getChar()).append(": ").append(leaf.getRepresentation()).append("\n");
+                print.append((char) leaf.getSymbol()).append(": ").append(leaf.getRepresentation()).append("\n");
             }
         }
         return print.toString();

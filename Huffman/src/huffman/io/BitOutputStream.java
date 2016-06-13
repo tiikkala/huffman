@@ -1,5 +1,6 @@
 package huffman.io;
 
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.logging.Level;
@@ -48,11 +49,12 @@ public class BitOutputStream {
     }
 
     /**
-     * Writes a character to the stream.
+     * Writes a character to the stream as two bytes.
      *
      * @param c Character to write.
      */
     public void writeChar(char c) {
+        int symbol = (int) c;
         try {
             this.output.write(c);
         } catch (IOException ex) {

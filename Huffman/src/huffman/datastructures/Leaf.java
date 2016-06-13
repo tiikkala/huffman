@@ -7,8 +7,8 @@ public class Leaf extends Node {
     
     private String representation; // String representation of the binary code
 
-    public Leaf(char character, long freq, String representation) {
-        super(character, freq);
+    public Leaf(int symbol, long freq, String representation) {
+        super(symbol, freq);
         this.representation = representation;
     }
     
@@ -38,10 +38,10 @@ public class Leaf extends Node {
         if (this.getRepresentation().length() < comparedLeaf.getRepresentation().length()) {
             return -1;
         }
-        if (this.getChar() > comparedLeaf.getChar()) {
+        if (this.getSymbol() > comparedLeaf.getSymbol()) {
             return 1;
         }
-        if (this.getChar() < comparedLeaf.getChar()) {
+        if (this.getSymbol() < comparedLeaf.getSymbol()) {
             return -1;
         }
         return 0;
