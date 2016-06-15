@@ -25,8 +25,8 @@ public final class Decompress {
 //		}
 
         // Otherwise, decompress
-        File inputFile = new File("testdata/compressedData2");
-        File outputFile = new File("testdata/testData2.txt");
+        File inputFile = new File("testdata/compressedData1");
+        File outputFile = new File("testdata/testData1.txt");
 
         BitInputStream in = new BitInputStream(new BufferedInputStream(new FileInputStream(inputFile)));
         OutputStream out = new BufferedOutputStream(new FileOutputStream(outputFile));
@@ -42,8 +42,12 @@ public final class Decompress {
         Decoder dec = new Decoder(in);
         while (dec.getBitsRemaining() > 0) {
             int symbol = dec.read();
-            out.write(symbol);
+            if (symbol >= 0) {
+                out.write(symbol);
+            }
+            if (symbol == -1) {
+                break;
+            }
         }
     }
-
 }

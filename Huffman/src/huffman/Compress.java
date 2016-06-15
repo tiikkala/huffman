@@ -1,6 +1,7 @@
 package huffman;
 
 import huffman.datastructures.Leaf;
+import huffman.huffmantree.Decoder;
 import huffman.huffmantree.Encoder;
 import huffman.huffmantree.HuffmanTree;
 import huffman.huffmantree.HuffmanTreeBuilder;
@@ -30,11 +31,11 @@ public class Compress {
 //            return;
 //        }
         // otherwise, compress
-        File inputFile = new File("testdata/data2.txt");
-        File outputFile = new File("testdata/compressedData2");
+        File inputFile = new File("testdata/data1.txt");
+        File outputFile = new File("testdata/compressedData1");
         // read input file once to compute symbol frequencies
         FrequencyTable freq = new FrequencyTable(inputFile);
-        // build the code tree
+        // build the code tree       
         HuffmanTree hTree = new HuffmanTreeBuilder().buildTree(freq.getFrequencies());
         // build code book
         hTree.buildCodes(hTree.getRoot(), new StringBuilder());
@@ -43,40 +44,23 @@ public class Compress {
         // read input file again, compress with Huffman coding and write ouput file
         InputStream in = new BufferedInputStream(new FileInputStream(inputFile));
         BitOutputStream out = new BitOutputStream(new BufferedOutputStream(new FileOutputStream(outputFile)));
+        Encoder enc = new Encoder(out, hTree);
         try {
-            writeCode(out, hTree);
-            compress(hTree.getCanonizedCodes(), in, out);
+            enc.writeHeaderforDecoding();
+            compress(enc, in, out);
         } finally {
             out.close();
             in.close();
         }
     }
 
-    static void writeCode(BitOutputStream out, HuffmanTree hTree) throws IOException {
-        int[] codeLenghts = hTree.getCanonizedCodeLenghts();
-        int[] symbols = hTree.getSymbolsOrderedByCodeLenghts();
-        // write lenght of codelenght table as the first four bytes
-        out.writeIntegerAsByteArray(codeLenghts.length-1 * Integer.BYTES);
-        // write lenght of the cahracter table as the next four bytes
-        out.writeIntegerAsByteArray(characters.length * Integer.BYTES);
-        // write codelenght table
-        for (int i = 1; i < codeLenghts.length; i++) {
-            out.writeIntegerAsByteArray(codeLenghts[i]);
-        }
-        // write character table
-        for (int j = 0; j < symbols.length; j++) {
-            out.writeIntegerAsByteArray(symbols[j]);
-        }
-    }
-
-    static void compress(Leaf[] codeBook, InputStream in, BitOutputStream out) throws IOException {
-        Encoder enc = new Encoder(out, codeBook);
+    static void compress(Encoder encoder, InputStream in, BitOutputStream out) throws IOException {
         while (true) {
             int b = in.read();
             if (b == -1) {
                 break;
             }
-            enc.write(b);
+            encoder.write(b);
         }
     }
 }

@@ -13,6 +13,7 @@ public class HuffmanTree {
 
     private Leaf[] canonizedCodes;
     private final Node root;
+    private long compressedFileLenght;
     private int maxCodeLenght = 0; // maximum lenght of codes used
     private int[] symbolsOrderedByCodeLength; // characters used in source file sorted for decoding
     private int[] canonizedCodeLengths; // bit-lenghts of the canonical codes for decoding
@@ -46,6 +47,7 @@ public class HuffmanTree {
             if (code.length() > this.maxCodeLenght) {
                 this.maxCodeLenght = code.length();
             }
+            this.compressedFileLenght += node.getFreq() * code.toString().length();
             Leaf leaf = new Leaf(node.getSymbol(), node.getFreq(), code.toString());
             this.leaves.insert(leaf);
         }
@@ -58,8 +60,9 @@ public class HuffmanTree {
      * http://stackoverflow.com/questions/15081300/storing-and-reconstruction-of-huffman-tree
      */
     public void canonizeCodes() {
-        // set the capacity of the codelenght count array to maxcodelength
-        this.canonizedCodeLengths = new int[this.getMaxCodeLenght()+1];
+        // set the capacity of the codelenght count array to maxcodelength + 1
+        // so the index of the table corresponds to the lenght of the code
+        this.canonizedCodeLengths = new int[this.getMaxCodeLenght() + 1];
         int[] symbols = new int[this.getLeaves().getSize()];
         Leaf[] codes = new Leaf[this.getLeaves().getSize()];
         int codeLengthCounter = 1;
@@ -75,7 +78,7 @@ public class HuffmanTree {
             }
             // replace the original code with canonized code
             currentLeaf.setRepresentation(Integer.toBinaryString(code));
-            // store the lengths of the code into an array
+            // store the length of the code into an array
             this.canonizedCodeLengths[codeLengthCounter]++;
             // store the character
             symbols[k] = currentLeaf.getSymbol();
@@ -89,6 +92,10 @@ public class HuffmanTree {
         this.symbolsOrderedByCodeLength = symbols;
     }
 
+    public long getCompressedFileLenght() {
+        return this.compressedFileLenght;
+    }
+        
     public Leaf[] getCanonizedCodes() {
         return this.canonizedCodes;
     }
@@ -108,7 +115,7 @@ public class HuffmanTree {
     public BinaryHeap getLeaves() {
         return this.leaves;
     }
-    
+
     public int getMaxCodeLenght() {
         return this.maxCodeLenght;
     }

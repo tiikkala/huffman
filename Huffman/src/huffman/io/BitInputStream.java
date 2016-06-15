@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 public class BitInputStream {
 
     private InputStream input; // underlying byte stream to read from
-    private int nextByte;  // either in the range 0x00 to 0xFF if bits are available, or is -1 if the end of stream is reached
+    private int nextByte;  // either in the range 0x00 to 0xFF if bits are available
     private int numBitsRemaining; // always between 0 and 7, inclusive
     private boolean isEndOfStream;
 
@@ -33,7 +33,7 @@ public class BitInputStream {
     }
 
     /**
-     * Reads four bytes from the strema and converts them into an int.
+     * Reads four bytes from the stream and converts them into int.
      *
      * @return The read bytes converted to int.
      */
@@ -43,6 +43,23 @@ public class BitInputStream {
             this.input.read(bytes);
             ByteBuffer bb = ByteBuffer.wrap(bytes);
             return bb.getInt();
+        } catch (IOException ex) {
+            Logger.getLogger(BitInputStream.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return -1;
+    }
+
+    /**
+     * Reads eight bytes from the stream and converts them into long,
+     * 
+     * @return The read bytes converted to long
+     */
+    public long readLong() {
+        try {
+            byte[] bytes = new byte[Long.BYTES];
+            this.input.read(bytes);
+            ByteBuffer bb = ByteBuffer.wrap(bytes);
+            return bb.getLong();
         } catch (IOException ex) {
             Logger.getLogger(BitInputStream.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -72,15 +89,6 @@ public class BitInputStream {
         }
         this.numBitsRemaining--;
         return (this.nextByte >>> this.numBitsRemaining) & 1;
-    }
-
-    public int readNoEof() throws IOException {
-        int result = this.readBit();
-        if (result != -1) {
-            return result;
-        } else {
-            throw new EOFException("End of stream reached");
-        }
     }
 
     public void close() throws IOException {

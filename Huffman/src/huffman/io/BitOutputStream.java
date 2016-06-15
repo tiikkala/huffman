@@ -1,6 +1,5 @@
 package huffman.io;
 
-import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.logging.Level;
@@ -26,26 +25,49 @@ public class BitOutputStream {
     }
 
     /**
-     * Writes integer to the stream as a byte array.
+     * Writes integer to the stream as four bytes.
      *
      * @param i Integer to write.
      */
     public void writeIntegerAsByteArray(int i) {
+            byte[] bytes = this.intToBytes(i);
+            this.writeByteArray(bytes);
+        }
+
+    private void writeByteArray(byte[] bytes) {
         try {
-            byte[] bytes = this.intToByteArray(i);
             this.output.write(bytes);
+            this.currentByte += this.currentByte + bytes.length;
         } catch (IOException ex) {
             Logger.getLogger(BitOutputStream.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
-    private byte[] intToByteArray(int i) {
+    /**
+     * Writes long to the strema as eight bytes.
+     * 
+     * @param l Long t write.
+     */
+    public void writeLongAsByteArray(long l) {
+            byte[] bytes = this.longToBytes(l);
+            this.writeByteArray(bytes);
+    }
+
+    private byte[] intToBytes(int i) {
         return new byte[]{
             (byte) (i >>> 24),
             (byte) (i >>> 16),
             (byte) (i >>> 8),
             (byte) i};
+    }
+
+    private byte[] longToBytes(long l) {
+        byte[] result = new byte[Long.BYTES];
+        for (int i = 7; i >= 0; i--) {
+            result[i] = (byte) (l & 0xFF);
+            l >>= Long.BYTES;
+        }
+        return result;
     }
 
     /**

@@ -29,7 +29,7 @@ public final class FrequencyTable {
      * Method reads the file byte by byte and updates the frequency table on the
      * go.
      *
-     * @param file
+     * @param file File to be compressed.
      * 
      * @throws FileNotFoundException
      */
@@ -55,7 +55,7 @@ public final class FrequencyTable {
     }
 
     private void increment(int symbol) {
-        if (freq[symbol] == Integer.MAX_VALUE) {
+        if (this.freq[symbol] == Integer.MAX_VALUE) {
             throw new RuntimeException("Arithmetic overflow");
         }
         this.freq[symbol]++;
@@ -64,5 +64,4 @@ public final class FrequencyTable {
     public int[] getFrequencies() {
         return this.freq;
     }
-
 }
