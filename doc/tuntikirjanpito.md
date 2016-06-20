@@ -22,3 +22,6 @@
 - 4h kanonisen koodauksen purku
 - 4h koodauksen tallentamiseen tutustuminen ja strategian miettiminen
 - 4h tiedostojen kirjoittamisen/luvun toteuttaminen
+
+**17.6.**
+- 6h bugien korjausta

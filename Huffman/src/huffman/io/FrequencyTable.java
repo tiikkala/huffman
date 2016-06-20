@@ -30,7 +30,7 @@ public final class FrequencyTable {
      * go.
      *
      * @param file File to be compressed.
-     * 
+     *
      * @throws FileNotFoundException
      */
     private void buildTable(File file) throws FileNotFoundException {
@@ -45,12 +45,11 @@ public final class FrequencyTable {
             }
         } catch (IOException ex) {
             Logger.getLogger(FrequencyTable.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            try {
-                input.close();
-            } catch (IOException ex) {
-                Logger.getLogger(FrequencyTable.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        }
+        try {
+            input.close();
+        } catch (IOException ex) {
+            Logger.getLogger(FrequencyTable.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

@@ -1,7 +1,5 @@
 package huffman;
 
-import huffman.datastructures.Leaf;
-import huffman.huffmantree.Decoder;
 import huffman.huffmantree.Encoder;
 import huffman.huffmantree.HuffmanTree;
 import huffman.huffmantree.HuffmanTreeBuilder;
@@ -31,9 +29,9 @@ public class Compress {
 //            return;
 //        }
         // otherwise, compress
-        File inputFile = new File("testdata/data1.txt");
-        File outputFile = new File("testdata/compressedData1");
-        // read input file once to compute symbol frequencies
+        File inputFile = new File("testdata/big1.txt");
+        File outputFile = new File("testdata/big1");
+        // read input file once to compute symbol d1frequencies
         FrequencyTable freq = new FrequencyTable(inputFile);
         // build the code tree       
         HuffmanTree hTree = new HuffmanTreeBuilder().buildTree(freq.getFrequencies());

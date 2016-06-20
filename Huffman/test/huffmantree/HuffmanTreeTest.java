@@ -39,7 +39,7 @@ public class HuffmanTreeTest {
 
     @Test
     public void codesAreCanonizedCorrectly() {
-        String[] correctlyCanonizedCodes = {"0", "100", "101", "110", "1110", "11110", "11111"};
+        String[] correctlyCanonizedCodes = {"1", "100", "101", "110", "1110", "11110", "11111"};
         String[] obtaindeCodes = new String[7];
         this.huffmanTree.buildCodes(this.huffmanTree.getRoot(), new StringBuilder());
         this.huffmanTree.canonizeCodes();

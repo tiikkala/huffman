@@ -47,8 +47,8 @@ public class HuffmanTreeBuilder {
         while (heap.getSize() > 1) {
             left = (Node) heap.poll();
             right = (Node) heap.poll();
-            // the ¤ character is never used, the actual characters from the
-            // file are in the leaf nodes
+            // the ¤ character is never used, the encoded characters are
+            // in the leaf nodes
             root = new Node('¤', left.getFreq() + right.getFreq());
             root.setLeftChild(left);
             root.setRigthChild(right);

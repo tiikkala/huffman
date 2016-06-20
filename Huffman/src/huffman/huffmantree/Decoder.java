@@ -43,8 +43,17 @@ public final class Decoder {
      * https://en.wikipedia.org/wiki/Canonical_Huffman_code
      */
     public void rebuildCodeBook() {
-        int code = 0;
+        StringBuilder firstCode = new StringBuilder();
+        firstCode.append("0");
+        int code = 1;
         int k = 0;
+        for (int i = 0; i < this.codeLenghtTable.length; i++) {
+            if (this.codeLenghtTable[i] != 0) {
+                k = i;
+                break;
+            }
+            code = code << 1;
+        }
         for (int i = 0; i < this.characters.length; i++) {
             this.codes[this.characters[i]] = Integer.toBinaryString(code);
             this.codeLenghtTable[k]--;
@@ -59,7 +68,7 @@ public final class Decoder {
             }
         }
     }
-    
+
     public long getBitsRemaining() {
         return this.bitsRemaining;
     }
@@ -84,7 +93,7 @@ public final class Decoder {
             } catch (IOException ex) {
                 Logger.getLogger(Decoder.class.getName()).log(Level.SEVERE, null, ex);
             }
-            // put codes into a hashmap for speed?
+            // put codes into hashmap for speed?
             for (int i = 0; i < this.codes.length; i++) {
                 if (this.codes[i] == null) {
                     continue;

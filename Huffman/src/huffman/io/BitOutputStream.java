@@ -13,7 +13,6 @@ public class BitOutputStream {
     private final OutputStream output; // underlying byte stream to write to
     private int currentByte; // always in the range 0x00 to 0xFF
     private int numBitsInCurrentByte; // always between 0 and 7, inclusive
-    // file lenght here?
 
     public BitOutputStream(OutputStream out) {
         if (out == null) {
@@ -37,7 +36,7 @@ public class BitOutputStream {
     private void writeByteArray(byte[] bytes) {
         try {
             this.output.write(bytes);
-            this.currentByte += this.currentByte + bytes.length;
+            this.currentByte += bytes.length;
         } catch (IOException ex) {
             Logger.getLogger(BitOutputStream.class.getName()).log(Level.SEVERE, null, ex);
         }

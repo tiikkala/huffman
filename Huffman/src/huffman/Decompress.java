@@ -25,8 +25,8 @@ public final class Decompress {
 //		}
 
         // Otherwise, decompress
-        File inputFile = new File("testdata/compressedData1");
-        File outputFile = new File("testdata/testData1.txt");
+        File inputFile = new File("testdata/big1");
+        File outputFile = new File("testdata/bbb.txt");
 
         BitInputStream in = new BitInputStream(new BufferedInputStream(new FileInputStream(inputFile)));
         OutputStream out = new BufferedOutputStream(new FileOutputStream(outputFile));

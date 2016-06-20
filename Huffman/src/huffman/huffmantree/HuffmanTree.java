@@ -17,7 +17,7 @@ public class HuffmanTree {
     private int maxCodeLenght = 0; // maximum lenght of codes used
     private int[] symbolsOrderedByCodeLength; // characters used in source file sorted for decoding
     private int[] canonizedCodeLengths; // bit-lenghts of the canonical codes for decoding
-    private final BinaryHeap leaves = new BinaryHeap(); //  leaves are stored in minheap so that they are easy
+    private BinaryHeap leaves = new BinaryHeap(); //  leaves are stored in minheap so that they are easy
     //  to retrieve in the right order for canonization
 
     public HuffmanTree(Node root) {
@@ -62,30 +62,36 @@ public class HuffmanTree {
     public void canonizeCodes() {
         // set the capacity of the codelenght count array to maxcodelength + 1
         // so the index of the table corresponds to the lenght of the code
-        this.canonizedCodeLengths = new int[this.getMaxCodeLenght() + 1];
+        this.canonizedCodeLengths = new int[this.getMaxCodeLenght() + 2];
         int[] symbols = new int[this.getLeaves().getSize()];
         Leaf[] codes = new Leaf[this.getLeaves().getSize()];
-        int codeLengthCounter = 1;
-        int code = 0;
+        int codeLengthCounter = 0;
+        int code = 1;
         int k = 0;
+        Leaf currentLeaf;
         while (!this.getLeaves().isEmpty()) {
-            Leaf currentLeaf = (Leaf) this.getLeaves().poll();
+            currentLeaf = (Leaf) this.getLeaves().poll();
             // if the current code is shorter than the original Huffman code, add zeros to 
             // the right end
-            while (Integer.toBinaryString(code).length() < currentLeaf.getRepresentation().length()) {
+            while (codeLengthCounter < currentLeaf.getRepresentation().length()) {
                 code = code << 1;
                 codeLengthCounter++;
             }
             // replace the original code with canonized code
+//            StringBuilder paddedCode = new StringBuilder();
+//            paddedCode.append(Integer.toBinaryString(code));
+//            while (paddedCode.length() < codeLengthCounter) {
+//                paddedCode.append("0");
+//            }
+            // increment the code with 1
             currentLeaf.setRepresentation(Integer.toBinaryString(code));
             // store the length of the code into an array
-            this.canonizedCodeLengths[codeLengthCounter]++;
+            this.canonizedCodeLengths[Integer.toBinaryString(code).length()]++;
             // store the character
             symbols[k] = currentLeaf.getSymbol();
             // store the canonized code
             codes[k] = currentLeaf;
             k++;
-            // increment the code with 1
             code++;
         }
         this.canonizedCodes = codes;
@@ -95,7 +101,7 @@ public class HuffmanTree {
     public long getCompressedFileLenght() {
         return this.compressedFileLenght;
     }
-        
+
     public Leaf[] getCanonizedCodes() {
         return this.canonizedCodes;
     }

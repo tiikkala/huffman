@@ -61,7 +61,8 @@ public class Encoder {
             if (symbol == l.getSymbol()) {
                 for (int i = 0; i < l.getRepresentation().length(); i++) {
                     this.output.writeBit(Character.getNumericValue(l.getRepresentation().charAt(i)));
-                }            
+                }    
+                break;
             }
         }
     }
