@@ -93,7 +93,7 @@ public class Node implements Comparable {
     public void setRigthChild(Node node) {
         this.right = node;
     }
-    
+
     /**
      *
      * @return

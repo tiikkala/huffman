@@ -18,8 +18,7 @@ public class BinaryHeap {
     }
 
     /**
-     *
-     * @param maxSize
+     * @param maxSize Maximum size of the heap.
      */
     public BinaryHeap(int maxSize) {
         this.nodes = new Comparable[maxSize + 1]; // 

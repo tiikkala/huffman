@@ -13,9 +13,8 @@ public class Encoder {
     private HuffmanTree hTree;
 
     /**
-     *
-     * @param out
-     * @param hTree
+     * @param out Stream of bits where the compressed file is written to.
+     * @param hTree Huffman tree genereted from the source file.
      */
     public Encoder(BitOutputStream out, HuffmanTree hTree) {
         if (out == null) {

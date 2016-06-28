@@ -17,8 +17,7 @@ public final class FrequencyTable {
     private int[] freq;
 
     /**
-     *
-     * @param file
+     * @param file File from which the frequencies are calculated from.
      */
     public FrequencyTable(File file) {
         this.freq = new int[256];
@@ -63,7 +62,7 @@ public final class FrequencyTable {
         }
         this.freq[symbol]++;
     }
-
+    
     /**
      *
      * @return

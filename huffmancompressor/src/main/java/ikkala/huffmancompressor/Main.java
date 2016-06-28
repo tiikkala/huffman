@@ -8,6 +8,11 @@ import java.io.IOException;
  */
 public class Main {
 
+    /**
+     *
+     * @param args
+     * @throws IOException
+     */
     public static void main(String[] args) throws IOException {
         if (args.length != 3) {
             System.err.println("Usage: java -jar c/d huffmancompressor-1.0-SNAPSHOT.jar");

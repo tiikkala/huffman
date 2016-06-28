@@ -17,8 +17,7 @@ public final class Decoder {
     private final String[] codes = new String[256];
 
     /**
-     *
-     * @param in
+     * @param in Stream of bits that is decoded.
      */
     public Decoder(BitInputStream in) {
         this.input = in;

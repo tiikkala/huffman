@@ -90,7 +90,7 @@ public class BitInputStream {
         this.numBitsRemaining--;
         return (this.nextByte >>> this.numBitsRemaining) & 1;
     }
-
+    
     /**
      *
      * @throws IOException

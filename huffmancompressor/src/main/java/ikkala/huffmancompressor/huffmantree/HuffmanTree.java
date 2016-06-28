@@ -21,8 +21,7 @@ public class HuffmanTree {
     //  to retrieve in the right order for canonization
 
     /**
-     *
-     * @param root
+     * @param root The root of the tree.
      */
     public HuffmanTree(Node root) {
         this.root = root;

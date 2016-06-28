@@ -27,8 +27,7 @@ public class Diagnostics {
     }
 
     /**
-     *
-     * @param f
+     * @param f The input file.
      */
     public void compareFileSizes(File f) {
         long finalFileSize = f.length();

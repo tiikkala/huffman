@@ -20,9 +20,8 @@ public class Decompressor {
     private final File outputFile;
     
     /**
-     *
-     * @param inputFile
-     * @param outputFile
+     * @param inputFile File to be decompressed.
+     * @param outputFile Name of the new decompressed File.
      */
     public Decompressor(File inputFile, File outputFile) {
         this.inputFile = inputFile;

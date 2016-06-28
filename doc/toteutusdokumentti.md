@@ -1,3 +1,19 @@
+## Johdanto
+
+Projektin aiheena oli toteuttaa tiedoston pakkaus ja purku käyttäen Huffman-koodausta. Kaikki ohjelmassa käytetyt tietorakenteet ja algoritmit on toteutettu itse.
+
+## Käytety teknologiat
+
+- Java
+- Apache Maven
+- Javadoc
+- Markdown
+- Git
+
+## Ohjelman rakenne
+
+- 'ikkala
+
 ## O-analyysit
 
 Huffman-koodin kirjoittamisen aikavaativuus on O(*k* log *k*), missä *k* on tiedoston eri merkkien lukumäärä (tekstitiedostoissa *k* <= 256). Kun koodi on selvillä, käydään tiedosto läpi merkki merkiltä siten, että pakattuun tiedostoon kirjoitetaan merkkiä kuvaava binäärikoodi. Tämän operaation aikavaativuus on O(*n*), missä *n* on tiedoston kaikkien merkkien lukumäärä.

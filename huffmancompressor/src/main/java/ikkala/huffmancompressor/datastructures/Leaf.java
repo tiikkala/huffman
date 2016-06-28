@@ -8,10 +8,9 @@ public class Leaf extends Node {
     private String representation; // String representation of the binary code
 
     /**
-     *
-     * @param symbol
-     * @param freq
-     * @param representation
+     * @param symbol Original smybol that is coded.
+     * @param freq Frequency of the symbol in the source file
+     * @param representation String representation of the binary code.
      */
     public Leaf(int symbol, long freq, String representation) {
         super(symbol, freq);

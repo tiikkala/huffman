@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 public class BitOutputStream {
 
     private final OutputStream output; // underlying byte stream to write to
-    private int currentByte; // always in the range 0x00 to 0xFF
+    private int currentByte;
     private int numBitsInCurrentByte; // always between 0 and 7, inclusive
 
     /**
@@ -49,7 +49,7 @@ public class BitOutputStream {
     /**
      * Writes long to the strema as eight bytes.
      * 
-     * @param l Long t write.
+     * @param l Long to write.
      */
     public void writeLongAsByteArray(long l) {
             byte[] bytes = this.longToBytes(l);

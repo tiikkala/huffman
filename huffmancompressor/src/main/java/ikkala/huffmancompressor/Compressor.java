@@ -25,9 +25,8 @@ public class Compressor {
     private final File outputFile;
 
     /**
-     *
-     * @param inputFile
-     * @param outputFile
+     * @param inputFile The file to be compressed
+     * @param outputFile Name of the new compressed file.
      */
     public Compressor(File inputFile, File outputFile) {
         this.inputFile = inputFile;
