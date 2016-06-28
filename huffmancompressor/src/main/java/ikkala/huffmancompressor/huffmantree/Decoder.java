@@ -94,7 +94,7 @@ public final class Decoder {
     /**
      * Reads a code from the input file and returns the corresponding symbol
      * value. Everytime a bit is read, the bitsRemaining counter is decremented
-     * with 1.
+     * with 1. TODO: optimize, put codes into hashmap for speed
      *
      * @return symbol value of the code
      */
