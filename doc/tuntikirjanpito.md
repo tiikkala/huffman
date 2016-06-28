@@ -25,3 +25,12 @@
 
 **17.6.**
 - 6h bugien korjausta
+
+**20.6.**
+- 8h lisää bugien korjausta, ei toiminutkaan homma ihan niinku piti
+
+**25.6.**
+- 5h käyttöliittymän aloittaminen, diagnostiikan aloittaminen
+
+**28.7.**
+- 6h käyttöliittymä loppuu, dokumentointi kuntoon ja homma pakettiin

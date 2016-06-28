@@ -6,4 +6,10 @@ Ohjelmalle on kirjoitettu automaattisia testejä JUnit-työkalulla. Testit keski
 
 ## Suorityskykytestaus
 
-Testasin ohjelman tehokkuutta eri kokoisilla tekstitiedostoilla. 
+Testasin ohjelman tehokkuutta eri kokoisilla tekstitiedostoilla.
+
+Esimerkkinä 867184 tavun kokoisella englanninkielisellä tekstitiedostolla saadut arvot (dracula.txt, löytyy testdata-kansiosta):
+
+- pakkaukseen kulunut aika: 107 millisekunttia
+- pakkaussuhde: 0,56
+- purkamiseen kulunut aika: 4,7 s
