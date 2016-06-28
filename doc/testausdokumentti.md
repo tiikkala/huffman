@@ -2,8 +2,8 @@
 
 ## Yksikkötestit
 
-Kaikki algoritmin toiminnan kannalta oleelliset luokat ja niiden metodit on testattu.
+Ohjelmalle on kirjoitettu automaattisia testejä JUnit-työkalulla. Testit keskittyvät algoritmin ytimen eli Huffman-puun testaamiseen. Testikattavuus ei ole kovin korkealla, sillä ajanpuutteen vuoksi en kirjoittanut testejä tiedostoja käsitteleville luokille.
 
 ## Suorityskykytestaus
 
-Tarkoitus testata ohjelmaa eri kokoisilla ja erilaisilla syötteillä (vaihdellaan eri merkkien määrää ja mielenkiinnosta esim. kokeillaan parilla eri kielellä kirjoitettua tekstiä).
+Testasin ohjelman tehokkuutta eri kokoisilla tekstitiedostoilla. 
