@@ -17,6 +17,6 @@ Esimerkkinä 867184 tavun kokoisella englanninkielisellä tekstitiedostolla saad
 Purkamisen pullonkauula tulee vielä selvemmin näkyviin suuremmilla tekstitiedostoilla. 10 megan satunnaisesti generoidulla tekstitiedostolla tuloksena oli seuraavat arvot:
 
 - pakkaussuhde 0.75
-- pakkaukseen kulunut aika: 1285 millisekuntia
+- pakkaukseen kulunut aika: 13 millisekuntia
 - purkamiseen kulunuta aika: 60 sekuntia
 
