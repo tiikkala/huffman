@@ -1,7 +1,7 @@
-package huffman.huffmantree;
+package ikkala.huffmancompressor.huffmantree;
 
-import huffman.datastructures.BinaryHeap;
-import huffman.datastructures.Node;
+import ikkala.huffmancompressor.datastructures.BinaryHeap;
+import ikkala.huffmancompressor.datastructures.Node;
 
 /**
  * Provides algorithm for building the Huffman tree from given character and frequency

@@ -1,7 +1,7 @@
 package ikkala.huffmancompressor;
 
-import huffman.huffmantree.Decoder;
-import huffman.io.BitInputStream;
+import ikkala.huffmancompressor.huffmantree.Decoder;
+import ikkala.huffmancompressor.io.BitInputStream;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -19,11 +19,20 @@ public class Decompressor {
     private final File inputFile;
     private final File outputFile;
     
+    /**
+     *
+     * @param inputFile
+     * @param outputFile
+     */
     public Decompressor(File inputFile, File outputFile) {
         this.inputFile = inputFile;
         this.outputFile = outputFile;
     }
 
+    /**
+     *
+     * @throws IOException
+     */
     public void decompress() throws IOException {
         BitInputStream in = new BitInputStream(new BufferedInputStream(new FileInputStream(this.inputFile)));
         OutputStream out = new BufferedOutputStream(new FileOutputStream(this.outputFile));

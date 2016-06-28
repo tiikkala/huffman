@@ -1,4 +1,4 @@
-package huffman.io;
+package ikkala.huffmancompressor.io;
 
 import java.io.EOFException;
 import java.io.IOException;
@@ -91,6 +91,10 @@ public class BitInputStream {
         return (this.nextByte >>> this.numBitsRemaining) & 1;
     }
 
+    /**
+     *
+     * @throws IOException
+     */
     public void close() throws IOException {
         input.close();
     }

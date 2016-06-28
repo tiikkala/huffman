@@ -1,4 +1,4 @@
-package huffman.datastructures;
+package ikkala.huffmancompressor.datastructures;
 
 /**
  * All characters in the source file are associated with a node
@@ -7,9 +7,18 @@ package huffman.datastructures;
 public class Node implements Comparable {
     
     private final int symbol;
+
+    /**
+     *
+     */
     protected final long freq;
     private Node left, right;
     
+    /**
+     *
+     * @param symbol
+     * @param freq
+     */
     public Node(int symbol, long freq) {
         this.symbol = symbol;
         this.freq = freq;
@@ -37,30 +46,58 @@ public class Node implements Comparable {
         return 1;
     }
     
+    /**
+     *
+     * @return
+     */
     public Node getLeftChild() {
         return this.left;
     }
     
+    /**
+     *
+     * @return
+     */
     public Node getRightChild() {
         return this.right;
     }
     
+    /**
+     *
+     * @return
+     */
     public long getFreq() {
         return this.freq;
     }
     
+    /**
+     *
+     * @return
+     */
     public int getSymbol() {
         return this.symbol;
     }
     
+    /**
+     *
+     * @param node
+     */
     public void setLeftChild(Node node) {
         this.left = node;
     }
     
+    /**
+     *
+     * @param node
+     */
     public void setRigthChild(Node node) {
         this.right = node;
     }
     
+    /**
+     *
+     * @return
+     */
     public boolean isLeaf() {
         return this.left == null && this.right == null;
     }

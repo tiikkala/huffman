@@ -1,4 +1,4 @@
-package huffman.huffmantree;
+package ikkala.huffmancompressor.huffmantree;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -16,6 +16,10 @@ public final class FrequencyTable {
 
     private int[] freq;
 
+    /**
+     *
+     * @param file
+     */
     public FrequencyTable(File file) {
         this.freq = new int[256];
         try {
@@ -60,6 +64,10 @@ public final class FrequencyTable {
         this.freq[symbol]++;
     }
 
+    /**
+     *
+     * @return
+     */
     public int[] getFrequencies() {
         return this.freq;
     }

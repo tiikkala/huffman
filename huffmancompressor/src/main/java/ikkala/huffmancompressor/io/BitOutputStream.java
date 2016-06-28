@@ -1,4 +1,4 @@
-package huffman.io;
+package ikkala.huffmancompressor.io;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -14,6 +14,10 @@ public class BitOutputStream {
     private int currentByte; // always in the range 0x00 to 0xFF
     private int numBitsInCurrentByte; // always between 0 and 7, inclusive
 
+    /**
+     *
+     * @param out
+     */
     public BitOutputStream(OutputStream out) {
         if (out == null) {
             throw new NullPointerException("Argument is null");

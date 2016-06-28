@@ -11,6 +11,9 @@ public class Diagnostics {
     private Long startTime;
     private Long originalFileSize;
 
+    /**
+     *
+     */
     public Diagnostics() {
         this.startTime = new Long(0);
         this.originalFileSize = new Long(0);
@@ -23,6 +26,10 @@ public class Diagnostics {
         originalFileSize = f.length();
     }
 
+    /**
+     *
+     * @param f
+     */
     public void compareFileSizes(File f) {
         long finalFileSize = f.length();
         System.out.println("Original file size: " + originalFileSize);
@@ -30,6 +37,9 @@ public class Diagnostics {
         System.out.println("(" + calcCompressionEfficiency(finalFileSize) + " compression ratio)");
     }
 
+    /**
+     *
+     */
     public void startTimer() {
         startTime = System.nanoTime();
     }

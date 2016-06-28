@@ -4,6 +4,6 @@ Huffman-koodin kirjoittamisen aikavaativuus on O(*k* log *k*), missä *k* on tie
 
 Purettaessa koodi rekonstruoidaan lukeamalla tiedoston alusta koodien pituudet sekä tiedostossa käytettävät merkit ((O(*k*)). Kun koodi on selvillä, luetaan tiedostoa bitti kerrallaan ja kirjoitetaan luettuja koodeja vastaavat merkit uudeen tiedostoon O(*n*).
 
-Omassa toetutuksessani purkaminen on pakkaamista hitaampaa, sillä jokaisen luetun bitin jälkeen verrataan saatua koodia taulukkomuotoiseen, pahimmillaan 256:n pituiseen koodikirjaan etsien sieltä vastaavuutta. Operaatiota voisi tehostaa tallentamalla koodit esimerkiksi hajautustauluun.
+Omassa toetutuksessani purkaminen on pakkaamista hitaampaa, sillä jokaisen luetun bitin jälkeen verrataan saatua koodia taulukkomuotoiseen, pahimmillaan 256:n pituiseen koodikirjaan etsien sieltä vastaavuutta. Operaatiota voisi tehostaa esimerkiksi tallentamalla koodit hajautustauluun.
 
 

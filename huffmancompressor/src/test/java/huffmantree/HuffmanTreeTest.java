@@ -1,9 +1,9 @@
 package huffmantree;
 
-import huffman.huffmantree.HuffmanTreeBuilder;
-import huffman.huffmantree.FrequencyTable;
-import huffman.datastructures.Leaf;
-import huffman.huffmantree.HuffmanTree;
+import ikkala.huffmancompressor.huffmantree.HuffmanTreeBuilder;
+import ikkala.huffmancompressor.huffmantree.FrequencyTable;
+import ikkala.huffmancompressor.datastructures.Leaf;
+import ikkala.huffmancompressor.huffmantree.HuffmanTree;
 import java.io.File;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,11 +18,17 @@ public class HuffmanTreeTest {
     private final int size = freq.length;
     HuffmanTree huffmanTree;
 
+    /**
+     *
+     */
     @Before
     public void setUp() {
         this.huffmanTree = new HuffmanTreeBuilder().buildTree(freq);
     }
 
+    /**
+     *
+     */
     @Test
     public void huffmanAlgorithmBuildsCorrectCodes() {
         String[] actualCodes = {"0", "100", "101", "111", "1101", "11000", "11001"};
@@ -37,6 +43,9 @@ public class HuffmanTreeTest {
         assertArrayEquals(actualCodes, obtainedCode);
     }
 
+    /**
+     *
+     */
     @Test
     public void codesAreCanonizedCorrectly() {
         String[] correctlyCanonizedCodes = {"0", "100", "101", "110", "1110", "11110", "11111"};

@@ -1,7 +1,7 @@
-package huffman.huffmantree;
+package ikkala.huffmancompressor.huffmantree;
 
-import huffman.datastructures.Leaf;
-import huffman.io.BitOutputStream;
+import ikkala.huffmancompressor.datastructures.Leaf;
+import ikkala.huffmancompressor.io.BitOutputStream;
 import java.io.IOException;
 
 /**
@@ -12,6 +12,11 @@ public class Encoder {
     private BitOutputStream output;
     private HuffmanTree hTree;
 
+    /**
+     *
+     * @param out
+     * @param hTree
+     */
     public Encoder(BitOutputStream out, HuffmanTree hTree) {
         if (out == null) {
             throw new NullPointerException("Argument is null");

@@ -1,6 +1,6 @@
-package huffman.huffmantree;
+package ikkala.huffmancompressor.huffmantree;
 
-import huffman.io.BitInputStream;
+import ikkala.huffmancompressor.io.BitInputStream;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -16,6 +16,10 @@ public final class Decoder {
     private final BitInputStream input;
     private final String[] codes = new String[256];
 
+    /**
+     *
+     * @param in
+     */
     public Decoder(BitInputStream in) {
         this.input = in;
         this.readCode();
@@ -72,10 +76,18 @@ public final class Decoder {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public long getBitsRemaining() {
         return this.bitsRemaining;
     }
 
+    /**
+     *
+     * @return
+     */
     public String[] getCodes() {
         return this.codes;
     }

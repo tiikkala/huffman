@@ -1,10 +1,10 @@
 package ikkala.huffmancompressor;
 
-import huffman.huffmantree.Encoder;
-import huffman.huffmantree.HuffmanTree;
-import huffman.huffmantree.HuffmanTreeBuilder;
-import huffman.io.BitOutputStream;
-import huffman.huffmantree.FrequencyTable;
+import ikkala.huffmancompressor.huffmantree.Encoder;
+import ikkala.huffmancompressor.huffmantree.HuffmanTree;
+import ikkala.huffmancompressor.huffmantree.HuffmanTreeBuilder;
+import ikkala.huffmancompressor.io.BitOutputStream;
+import ikkala.huffmancompressor.huffmantree.FrequencyTable;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -24,11 +24,20 @@ public class Compressor {
     private final File inputFile;
     private final File outputFile;
 
+    /**
+     *
+     * @param inputFile
+     * @param outputFile
+     */
     public Compressor(File inputFile, File outputFile) {
         this.inputFile = inputFile;
         this.outputFile = outputFile;
     }
 
+    /**
+     *
+     * @throws IOException
+     */
     public void compress() throws IOException {
         // read input file once to compute symbol d1frequencies
         FrequencyTable freq = new FrequencyTable(this.inputFile);

@@ -1,6 +1,6 @@
 package datastructures;
 
-import huffman.datastructures.BinaryHeap;
+import ikkala.huffmancompressor.datastructures.BinaryHeap;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -12,17 +12,26 @@ public class BinaryHeapTest {
 
     BinaryHeap minHeap;
 
+    /**
+     *
+     */
     @Before
     public void setUp() {
         this.minHeap = new BinaryHeap();
     }
 
+    /**
+     *
+     */
     @Test
     public void insertingNodeToEmptyHeapIncreasesSizeByOne() {
         this.minHeap.insert(1);
         assertEquals(1, this.minHeap.getSize());
     }
 
+    /**
+     *
+     */
     @Test
     public void pollingNodeFromHeapDecreasesSizeByOne() {
         this.minHeap.insert(1);
@@ -31,17 +40,26 @@ public class BinaryHeapTest {
         assertEquals(1, this.minHeap.getSize());
     }
 
+    /**
+     *
+     */
     @Test
     public void isEmptyReturnsTrueForEmptyHeap() {
         assertTrue(this.minHeap.isEmpty());
     }
 
+    /**
+     *
+     */
     @Test
     public void isEmptyReturnsFalseForNonEmptyHeap() {
         this.minHeap.insert(1);
         assertFalse(this.minHeap.isEmpty());
     }
 
+    /**
+     *
+     */
     @Test
     public void inseringAndPollingMaintainsHeapProperty() {
         this.minHeap.insert(1);
@@ -55,6 +73,9 @@ public class BinaryHeapTest {
         assertArrayEquals(expectedOrder, actualOrder);
     }
 
+    /**
+     *
+     */
     @Test
     public void heapSizeIsCorrectWithMoreThanTwelveNodes() {
         for (int i = 1; i <= 13; i++) {
@@ -63,6 +84,9 @@ public class BinaryHeapTest {
         assertEquals(13, this.minHeap.getSize());
     }
 
+    /**
+     *
+     */
     @Test
     public void heapPropertyIsMaintainedWithMoreThanTwelveNodes() {
         for (int i = 0; i < 13; i++) {
@@ -76,6 +100,9 @@ public class BinaryHeapTest {
         assertArrayEquals(expectedOrder, actualOrder);
     }
 
+    /**
+     *
+     */
     @Test
     public void largeHeapMaintainsHeapProperty() {
         int[] expectedOrder = new int[10000];

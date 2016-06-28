@@ -1,4 +1,4 @@
-package huffman.datastructures;
+package ikkala.huffmancompressor.datastructures;
 
 import java.util.Arrays;
 
@@ -17,10 +17,18 @@ public class BinaryHeap {
         this.nodes = new Comparable[13]; // add 1 to account for root being at 1;
     }
 
+    /**
+     *
+     * @param maxSize
+     */
     public BinaryHeap(int maxSize) {
         this.nodes = new Comparable[maxSize + 1]; // 
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isEmpty() {
         return this.size == 0;
     }
@@ -73,10 +81,18 @@ public class BinaryHeap {
         return this.nodes[1];
     }
 
+    /**
+     *
+     * @return
+     */
     public int getSize() {
         return this.size;
     }
     
+    /**
+     *
+     * @param nodes
+     */
     public void setNodes(Comparable[] nodes) {
         this.nodes = nodes;
     }

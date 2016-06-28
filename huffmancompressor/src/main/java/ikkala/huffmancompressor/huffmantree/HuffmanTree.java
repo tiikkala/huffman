@@ -1,8 +1,8 @@
-package huffman.huffmantree;
+package ikkala.huffmancompressor.huffmantree;
 
-import huffman.datastructures.BinaryHeap;
-import huffman.datastructures.Leaf;
-import huffman.datastructures.Node;
+import ikkala.huffmancompressor.datastructures.BinaryHeap;
+import ikkala.huffmancompressor.datastructures.Leaf;
+import ikkala.huffmancompressor.datastructures.Node;
 
 /**
  * Represents a Huffman tree. Class provides methods for building the Huffman
@@ -20,6 +20,10 @@ public class HuffmanTree {
     private BinaryHeap leaves = new BinaryHeap(); //  leaves are stored in minheap so that they are easy
     //  to retrieve in the right order for canonization
 
+    /**
+     *
+     * @param root
+     */
     public HuffmanTree(Node root) {
         this.root = root;
     }
@@ -98,34 +102,66 @@ public class HuffmanTree {
         this.symbolsOrderedByCodeLength = symbols;
     }
 
+    /**
+     *
+     * @return
+     */
     public long getCompressedFileLenght() {
         return this.compressedFileLenght;
     }
 
+    /**
+     *
+     * @return
+     */
     public Leaf[] getCanonizedCodes() {
         return this.canonizedCodes;
     }
 
+    /**
+     *
+     * @return
+     */
     public int[] getCanonizedCodeLenghts() {
         return this.canonizedCodeLengths;
     }
 
+    /**
+     *
+     * @return
+     */
     public int[] getSymbolsOrderedByCodeLenghts() {
         return this.symbolsOrderedByCodeLength;
     }
 
+    /**
+     *
+     * @return
+     */
     public Node getRoot() {
         return this.root;
     }
 
+    /**
+     *
+     * @return
+     */
     public BinaryHeap getLeaves() {
         return this.leaves;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getMaxCodeLenght() {
         return this.maxCodeLenght;
     }
 
+    /**
+     *
+     * @return
+     */
     public String canonizedCodesToString() {
         StringBuilder print = new StringBuilder();
         for (Leaf leaf : this.canonizedCodes) {
