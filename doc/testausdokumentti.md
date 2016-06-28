@@ -20,3 +20,4 @@ Purkamisen pullonkauula tulee vielä selvemmin näkyviin suuremmilla tekstitiedo
 - pakkaukseen kulunut aika: 13 millisekuntia
 - purkamiseen kulunuta aika: 60 sekuntia
 
+Hajautustauluoptimointi jääköön kuitenkin seuraavaan kertaan, nyt on aika palauttaa.
