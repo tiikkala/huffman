@@ -1,4 +1,4 @@
-package huffman.io;
+package huffman.huffmantree;
 
 import java.io.BufferedInputStream;
 import java.io.File;

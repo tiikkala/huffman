@@ -1,7 +1,5 @@
 package datastructures;
 
-
-
 import huffman.datastructures.BinaryHeap;
 import org.junit.Before;
 import org.junit.Test;

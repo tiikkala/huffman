@@ -55,43 +55,43 @@ public class HuffmanTree {
 
     /**
      * Generates <a href="https://en.wikipedia.org/wiki/Canonical_Huffman_code">
-     * the canonical Huffman code</a> of the Huffman tree. Workings of the
-     * algorithm is described here
+     * the canonical Huffman code</a> of the Huffman tree. The algorithm is
+     * described here
      * http://stackoverflow.com/questions/15081300/storing-and-reconstruction-of-huffman-tree
      */
     public void canonizeCodes() {
         // set the capacity of the codelenght count array to maxcodelength + 1
         // so the index of the table corresponds to the lenght of the code
-        this.canonizedCodeLengths = new int[this.getMaxCodeLenght() + 2];
+        this.canonizedCodeLengths = new int[this.getMaxCodeLenght() + 1];
         int[] symbols = new int[this.getLeaves().getSize()];
         Leaf[] codes = new Leaf[this.getLeaves().getSize()];
         int codeLengthCounter = 0;
-        int code = 1;
+        int code = 1; // we'll start with one and remove it later because of handling 
+                      // bits in Java is a pain in the ass (all unnecessary 0's are omitted
+                      // when one converts a binary number to String representation)
         int k = 0;
         Leaf currentLeaf;
+        StringBuilder representation;
         while (!this.getLeaves().isEmpty()) {
             currentLeaf = (Leaf) this.getLeaves().poll();
-            // if the current code is shorter than the original Huffman code, add zeros to 
-            // the right end
+            // if the current code is shorter than the original Huffman code,
+            // append zeroes to right
             while (codeLengthCounter < currentLeaf.getRepresentation().length()) {
                 code = code << 1;
                 codeLengthCounter++;
             }
-            // replace the original code with canonized code
-//            StringBuilder paddedCode = new StringBuilder();
-//            paddedCode.append(Integer.toBinaryString(code));
-//            while (paddedCode.length() < codeLengthCounter) {
-//                paddedCode.append("0");
-//            }
-            // increment the code with 1
-            currentLeaf.setRepresentation(Integer.toBinaryString(code));
+            representation = new StringBuilder(Integer.toBinaryString(code));
+            // ugly hack to remove the unnessecarry 1 bit at the start of the code
+            representation.deleteCharAt(0);
+            currentLeaf.setRepresentation(representation.toString());
             // store the length of the code into an array
-            this.canonizedCodeLengths[Integer.toBinaryString(code).length()]++;
+            this.canonizedCodeLengths[codeLengthCounter]++;
             // store the character
             symbols[k] = currentLeaf.getSymbol();
             // store the canonized code
             codes[k] = currentLeaf;
             k++;
+            // increment code
             code++;
         }
         this.canonizedCodes = codes;

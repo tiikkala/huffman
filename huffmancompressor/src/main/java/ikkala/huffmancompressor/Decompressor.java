@@ -1,4 +1,4 @@
-package huffman;
+package ikkala.huffmancompressor;
 
 import huffman.huffmantree.Decoder;
 import huffman.io.BitInputStream;
@@ -14,31 +14,28 @@ import java.io.OutputStream;
  * Decompresses an input file that was comppressed with canonical Huffman coding
  * to an output file.
  */
-public final class Decompress {
+public class Decompressor {
+    
+    private final File inputFile;
+    private final File outputFile;
+    
+    public Decompressor(File inputFile, File outputFile) {
+        this.inputFile = inputFile;
+        this.outputFile = outputFile;
+    }
 
-    public static void main(String[] args) throws IOException {
-		// Show what command line arguments to use
-//		if (args.length == 0) {
-//			System.err.println("Usage: java HuffmanDecompress InputFile OutputFile");
-//			System.exit(1);
-//			return;
-//		}
-
-        // Otherwise, decompress
-        File inputFile = new File("testdata/big1");
-        File outputFile = new File("testdata/bbb.txt");
-
-        BitInputStream in = new BitInputStream(new BufferedInputStream(new FileInputStream(inputFile)));
-        OutputStream out = new BufferedOutputStream(new FileOutputStream(outputFile));
+    public void decompress() throws IOException {
+        BitInputStream in = new BitInputStream(new BufferedInputStream(new FileInputStream(this.inputFile)));
+        OutputStream out = new BufferedOutputStream(new FileOutputStream(this.outputFile));
         try {
-            decompress(in, out);
+            decode(in, out);
         } finally {
             out.close();
             in.close();
         }
     }
 
-    static void decompress(BitInputStream in, OutputStream out) throws IOException {
+    private void decode(BitInputStream in, OutputStream out) throws IOException {
         Decoder dec = new Decoder(in);
         while (dec.getBitsRemaining() > 0) {
             int symbol = dec.read();

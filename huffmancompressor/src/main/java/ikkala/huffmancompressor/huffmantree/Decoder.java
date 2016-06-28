@@ -43,26 +43,29 @@ public final class Decoder {
      * https://en.wikipedia.org/wiki/Canonical_Huffman_code
      */
     public void rebuildCodeBook() {
-        StringBuilder firstCode = new StringBuilder();
-        firstCode.append("0");
         int code = 1;
-        int k = 0;
+        int codeLenghtCounter = 0;
+        // search the first code
         for (int i = 0; i < this.codeLenghtTable.length; i++) {
             if (this.codeLenghtTable[i] != 0) {
-                k = i;
+                codeLenghtCounter = i;
+                code = code << 1;
                 break;
             }
             code = code << 1;
         }
+        StringBuilder representation;
         for (int i = 0; i < this.characters.length; i++) {
-            this.codes[this.characters[i]] = Integer.toBinaryString(code);
-            this.codeLenghtTable[k]--;
-            if (Integer.toBinaryString(code).length() < this.codeLenghtTable.length) {
+            representation = new StringBuilder(Integer.toBinaryString(code));
+            representation.deleteCharAt(0);
+            this.codes[this.characters[i]] = representation.toString();
+            this.codeLenghtTable[codeLenghtCounter]--;
+            if (representation.length() < this.codeLenghtTable.length) {
                 // search next codelenght with count != 0
-                while (this.codeLenghtTable[k] <= 0) {
-                    k++;
+                while (this.codeLenghtTable[codeLenghtCounter] <= 0) {
+                    codeLenghtCounter++;
                 }
-                code = (code + 1) << (k + 1 - Integer.toBinaryString(code).length());
+                code = (code + 1) << (codeLenghtCounter + 1 - representation.length());
             } else {
                 code++;
             }
@@ -80,7 +83,7 @@ public final class Decoder {
     /**
      * Reads a code from the input file and returns the corresponding symbol
      * value. Everytime a bit is read, the bitsRemaining counter is decremented
-     * with 1. TO DO: OPTIMIZE THIS
+     * with 1.
      *
      * @return symbol value of the code
      */
