@@ -21,6 +21,8 @@ Projektin aiheena oli toteuttaa tiedoston pakkaus ja purku käyttäen Huffman-ko
 
 - Minimikeko
 - Solmu, lehti
+- Hajautustaulu
+- Lista
 
 ## Pakkaus
 
