@@ -36,10 +36,8 @@ Projektin aiheena oli toteuttaa tiedoston pakkaus ja purku käyttäen Huffman-ko
 
 1. Rekonstruoidaan kanoninen koodi lukeamalla tiedoston alusta koodien pituudet sekä tiedostossa käytettävät merkit (O(*k*). 
 
-2. Kun koodi on selvillä, luetaan tiedostoa bitti kerrallaan ja kirjoitetaan luettuja koodeja vastaavat merkit uudeen tiedostoon O(*n*).
-
-Omassa toetutuksessani purkaminen on pakkaamista hitaampaa, sillä jokaisen luetun bitin jälkeen verrataan saatua koodia taulukkomuotoiseen, pahimmillaan 256:n pituiseen koodikirjaan etsien sieltä vastaavuutta. Operaatiota voisi tehostaa esimerkiksi tallentamalla koodit hajautustauluun.
+2. Kun koodi on selvillä, luetaan tiedostoa bitti kerrallaan ja kirjoitetaan luettuja koodeja vastaavat merkit uudeen tiedostoon O(*n*). Jokaisen luetun bitin jälkeen haetaan koodille vastaavuutta hajautustaulusta.
 
 ## Paranneltavaa
 
-Koodia voisi optimoida useammastakin kohtaa. Pahin pullonkaula on tällä hetkellä purkaminen, joka nopeutuisi nykyisestä jo pelkästään sillä, että kanonisoiduista koodista rakentaisi Huffman-puun, jota pitkin kulkemalla koodin saisi purettua.
+Koodia voisi optimoida useammastakin kohtaa. Pahin pullonkaula on tällä hetkellä purkaminen, joka nopeutuisi nykyisestä luultavasti jo pelkästään sillä, että kanonisoiduista koodista rakentaisi Huffman-puun, jota pitkin kulkemalla koodin saisi purettua ilman, että jokaisen bitin jälkeen täytyy koodia verrata hajautustaulun avaimiin.

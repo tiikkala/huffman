@@ -18,6 +18,5 @@ Purkamisen pullonkauula tulee vielä selvemmin näkyviin suuremmilla tekstitiedo
 
 - pakkaussuhde 0.75
 - pakkaukseen kulunut aika: 13 millisekuntia
-- purkamiseen kulunuta aika: 60 sekuntia
+- purkamiseen kulunuta aika: 3 sekuntia
 
-Hajautustauluoptimointi jääköön kuitenkin seuraavaan kertaan, nyt on aika palauttaa.
