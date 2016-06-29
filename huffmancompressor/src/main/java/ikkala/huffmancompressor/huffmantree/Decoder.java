@@ -87,7 +87,7 @@ public final class Decoder {
     /**
      * Reads a code from the input file and returns the corresponding symbol
      * value. Everytime a bit is read, the bitsRemaining counter is decremented
-     * with 1. TODO: optimize, put codes into hashmap for speed
+     * with 1.
      *
      * @return symbol value of the code
      */
@@ -100,7 +100,6 @@ public final class Decoder {
             } catch (IOException ex) {
                 Logger.getLogger(Decoder.class.getName()).log(Level.SEVERE, null, ex);
             }
-            // put codes into hashmap for speed?
             if (this.codes.containsKey(code.toString())) {
                 return this.codes.get(code.toString());
             }
