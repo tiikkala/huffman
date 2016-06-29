@@ -1,5 +1,6 @@
 package ikkala.huffmancompressor.huffmantree;
 
+import ikkala.huffmancompressor.datastructures.HashTable;
 import ikkala.huffmancompressor.io.BitInputStream;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -14,7 +15,7 @@ public final class Decoder {
     private char[] characters;
     private long bitsRemaining = 0;
     private final BitInputStream input;
-    private final String[] codes = new String[256];
+    private final HashTable<String, Integer> codes = new HashTable(256);
 
     /**
      * @param in Stream of bits that is decoded.
@@ -61,7 +62,7 @@ public final class Decoder {
         for (int i = 0; i < this.characters.length; i++) {
             representation = new StringBuilder(Integer.toBinaryString(code));
             representation.deleteCharAt(0);
-            this.codes[this.characters[i]] = representation.toString();
+            this.codes.put(representation.toString(), (int) this.characters[i]);
             this.codeLenghtTable[codeLenghtCounter]--;
             if (representation.length() < this.codeLenghtTable.length) {
                 // search next codelenght with count != 0
@@ -84,14 +85,6 @@ public final class Decoder {
     }
 
     /**
-     *
-     * @return
-     */
-    public String[] getCodes() {
-        return this.codes;
-    }
-
-    /**
      * Reads a code from the input file and returns the corresponding symbol
      * value. Everytime a bit is read, the bitsRemaining counter is decremented
      * with 1. TODO: optimize, put codes into hashmap for speed
@@ -108,13 +101,8 @@ public final class Decoder {
                 Logger.getLogger(Decoder.class.getName()).log(Level.SEVERE, null, ex);
             }
             // put codes into hashmap for speed?
-            for (int i = 0; i < this.codes.length; i++) {
-                if (this.codes[i] == null) {
-                    continue;
-                }
-                if (this.codes[i].equals(code.toString())) {
-                    return i;
-                }
+            if (this.codes.containsKey(code.toString())) {
+                return this.codes.get(code.toString());
             }
         }
         // should not reach here
