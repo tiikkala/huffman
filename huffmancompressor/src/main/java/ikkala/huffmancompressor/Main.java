@@ -35,7 +35,7 @@ public class Main {
                     break;
                 }
                 default:
-                    System.err.println("First argument needs to be + or -");
+                    System.err.println("First argument needs to be c or d");
                     System.exit(1);
                     return;
             }
